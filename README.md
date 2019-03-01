@@ -6,7 +6,7 @@ Con mi concubina llevamos las cuentas de la casa en una spreadsheet de Google y 
 
 ### Instalación
 
-#### Cómo hago mi propio bot?
+#### ¿Cómo hago mi propio bot?
 
 Te va a venir muuy bien leer este artículo de Telegram
 
@@ -17,12 +17,13 @@ Ahi vas a descular:
 - Como dar de alta un bot propio
 - Como hacer la movida para que te aparezcan los comandos disponibles y su descripción
 
-#### Cómo lo linkeo con Google?
+#### ¿Cómo lo linkeo con Google?
 
 Dos pasos:
 
 1) Primero, vas a tener que declarar una app propia (esto se puede leer [acá](https://developers.google.com/identity/protocols/OAuth2)) y luego bajar los permisos a un archivo `creds.json` para que este bicho lo pueda leer.
 2) Le vas a tener que dar permisos de tu cuenta de Google a esa app que vos creaste. Eso se hace con el comando `/autorizar`
+3) En el `config.py` hay que poner el ID de tu spreadsheet
 
 #### Archivo de configuración
 
