@@ -21,7 +21,7 @@ Ahi vas a descular:
 
 Dos pasos:
 
-1) Primero, vas a tener que declarar una app propia (esto se puede leer [acá](https://developers.google.com/identity/protocols/OAuth2))
+1) Primero, vas a tener que declarar una app propia (esto se puede leer [acá](https://developers.google.com/identity/protocols/OAuth2)) y luego bajar los permisos a un archivo `creds.json` para que este bicho lo pueda leer.
 2) Le vas a tener que dar permisos de tu cuenta de Google a esa app que vos creaste. Eso se hace con el comando `/autorizar`
 
 #### Archivo de configuración
