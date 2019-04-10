@@ -6,6 +6,11 @@ Con mi concubina llevamos las cuentas de la casa en una spreadsheet de Google y 
 
 ### Instalación
 
+[Instalar virtual env](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
+
+`pip install -r requirements.txt`
+
+
 #### ¿Cómo hago mi propio bot?
 
 Te va a venir muuy bien leer este artículo de Telegram
