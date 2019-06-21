@@ -5,6 +5,10 @@ from oauth2client import file, client
 from config import config
 import os
 
+JSON_FILE_EXTENSION = '.json'
+TOKENS_FOLDER_NAME = 'tokens'
+CREDENTIALS_FILENAME = 'creds'
+
 SCOPES = 'https://www.googleapis.com/auth/spreadsheets'
 OOB_CALLBACK_URN = 'urn:ietf:wg:oauth:2.0:oob'
 
@@ -67,17 +71,30 @@ class GoogleAuth(object):
         store = self._get_storage_file()
         credential = store.get()
         if not credential or credential.invalid:
+            # si todavía no tenemos un código, debemos ir a la URL de auth
             if code is None:
-                flow = client.flow_from_clientsecrets('creds.json', SCOPES, redirect_uri=OOB_CALLBACK_URN)
-                return flow.step1_get_authorize_url()
+                return self._get_auth_url()
+            # ya con el código de auth en al mano, pedimos la credencial para guardarla (y usarla próximas veces)
             else:
-                credential = client.credentials_from_clientsecrets_and_code('creds.json', SCOPES, code,
-                                                                            redirect_uri=OOB_CALLBACK_URN)
+                credential = self._get_credential_to_store(code)
                 store.put(credential)
                 credential.set_store(store)
 
         return credential
 
+    def _get_credential_to_store(self, code):
+        return client.credentials_from_clientsecrets_and_code(self._get_credentials_file_name(),
+                                                              SCOPES, code,
+                                                              redirect_uri=OOB_CALLBACK_URN)
+
+    def _get_auth_url(self):
+        flow = client.flow_from_clientsecrets(self._get_credentials_file_name(),
+                                              SCOPES, redirect_uri=OOB_CALLBACK_URN)
+        return flow.step1_get_authorize_url()
+
+    def _get_credentials_file_name(self):
+        return CREDENTIALS_FILENAME + JSON_FILE_EXTENSION
+
     def _get_storage_file(self):
-        return file.Storage(os.path.join('tokens', self.username + '.json'))
+        return file.Storage(os.path.join(TOKENS_FOLDER_NAME, self.username + JSON_FILE_EXTENSION))
 

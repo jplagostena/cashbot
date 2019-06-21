@@ -2,3 +2,4 @@ python-telegram-bot
 gspread
 oauth2client
 pytest
+pytest-mock
