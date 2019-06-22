@@ -19,6 +19,14 @@ class DevConfig(Config):
     pass
 
 
+class TestConfig(Config):
+    SPREADSHEET_ID = 'an_id_for_tests'
+    SHEET_TITLE = 'Sheet_Test'
+    BOT_TOKEN = 'a_bot_token'
+    CATEGORIES = ('cat1', 'cat2', 'cat3')
+    ENABLED_USERS = [('telegram1', 'name1'), ('telegram2', 'name2')]
+
+
 devConfig = DevConfig()
 
 
@@ -29,8 +37,9 @@ class ProdConfig(Config):
 prodConfig = ProdConfig()
 
 configs = {
-    'prod': prodConfig,
-    'dev': devConfig,
+    'prod': ProdConfig(),
+    'dev': DevConfig(),
+    'test': TestConfig()
 }
 
 config = configs[env]
