@@ -1,3 +1,5 @@
-  language: python
-  script:
-    - pytest
+language: python
+script:
+  - pytest
+env:
+  - BOT_ENV=test
