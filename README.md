@@ -1,4 +1,4 @@
-## Telegram Cashbot
+## Telegram Cashbot [![Build Status](https://travis-ci.org/jplagostena/cashbot.svg?branch=master)](https://travis-ci.org/jplagostena/cashbot)
 
 ### ¿Qué hace?
 
@@ -48,5 +48,5 @@ Mi intención es hacer tests de unidad, porque medio que lo empecé a los poncha
 
 - [ ] Tests de unidad
 - [ ] Repasar TODOs
-- [ ] Una vez que haya algún test, subirlo a un CI  
+- [X] Una vez que haya algún test, subirlo a un CI  
 - [ ] Si alguien la tiene clara con oauth y ve que se puede mejorar, chiflen. El comando `/autorizar` fue hecho con amor, pero sin mucho know-how y con algo de apuro.  
