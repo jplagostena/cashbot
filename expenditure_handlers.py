@@ -1,12 +1,12 @@
+import logging
+
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ConversationHandler
 
 import config
 import telegram_helper
-from google_sheeter import GoogleAuth, GoogleSheeter
-import logging
 from config import config
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-
+from google_sheeter import GoogleAuth, GoogleSheeter
 
 CATEGORY_COLUMNS = 3
 CURRENT_EXPENDITURES = {}
@@ -40,6 +40,14 @@ def handler_gasto(bot, update):
 
     CURRENT_EXPENDITURES[username] = {}
 
+    keyboard_opts = get_categories_keyboard()
+
+    reply_markup = InlineKeyboardMarkup(keyboard_opts)
+    update.message.reply_text('Categoria?', reply_markup=reply_markup)
+    return CATEGORY
+
+
+def get_categories_keyboard():
     keyboard_opts = []
     keyboard_opt_row = []
     idx = 0
@@ -50,13 +58,9 @@ def handler_gasto(bot, update):
             keyboard_opts.append(keyboard_opt_row)
             keyboard_opt_row = []
             idx = 0
-
     if idx != CATEGORY_COLUMNS:
         keyboard_opts.append(keyboard_opt_row)
-
-    reply_markup = InlineKeyboardMarkup(keyboard_opts)
-    update.message.reply_text('Categoria?', reply_markup=reply_markup)
-    return CATEGORY
+    return keyboard_opts
 
 
 def handler_category(bot, update):
@@ -72,9 +76,12 @@ def handler_category(bot, update):
 
 
 def handler_amount(bot, update):
-    #TODO validar que esto sea algo numérico
     amount = update.message.text
-
+    # reemplazamos , por ., para validar el float. Si, no es la mejor manera de trabajar con formatos numéricos, pero...
+    amount_to_validate = amount.replace(",", ".")
+    if not telegram_helper.is_float(amount_to_validate):
+        update.message.reply_text("El valor no parece numérico. Ponete los lentes 🤓")
+        return AMOUNT
     CURRENT_EXPENDITURES[telegram_helper.get_username_from_update(update)]['amount'] = amount
     update.message.reply_text("Ingresá descripción")
 
