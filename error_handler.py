@@ -5,6 +5,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 
-def error_callback(update, context):
-    logger.warning('Update "%s" causó el error "%s"', update, context.error)
-    update.message.reply_text("Uy! Alguno anduvo mal. Decile a tu admin que mire los logs 🤷")
+def error_callback(bot, update, error):
+    logger.warning('Update "%s" causó el error "%s"', update, error)
+    update.message.reply_text("Uy! Algo anduvo mal. Decile a tu admin que mire los logs 🤷")
