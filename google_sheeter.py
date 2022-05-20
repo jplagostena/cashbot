@@ -33,15 +33,7 @@ class GoogleSheeter(object):
         amount = expenditure_dict[username]['amount']
         category = expenditure_dict[username]['category']
         name = self._get_name()
-        # TODO si varias personas están subiendo un gasto al mismo tiempo esto es fruta
-        # una posible solución es agregar siempre una -nueva- fila arriba, en vez de abajo
-        row_idx = self.next_available_row(wks)
-        wks.insert_row((date, name, description, amount, category), int(row_idx), 'USER_ENTERED')
-
-    @staticmethod
-    def next_available_row(worksheet):
-        str_list = list(filter(None, worksheet.col_values(1)))
-        return str(len(str_list) + 1)
+        wks.insert_row((date, name, description, amount, category), 2, 'USER_ENTERED')
 
     def _get_name(self):
         """
