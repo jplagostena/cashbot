@@ -1,17 +1,16 @@
-## Telegram Cashbot [![Build Status](https://travis-ci.org/jplagostena/cashbot.svg?branch=master)](https://travis-ci.org/jplagostena/cashbot)
+# Telegram Cashbot [![Build Status](https://travis-ci.org/jplagostena/cashbot.svg?branch=master)](https://app.travis-ci.com/github/jplagostena/cashbot)
 
-### ¿Qué hace?
+## ¿Qué hace?
 
 Con mi concubina llevamos las cuentas de la casa en una spreadsheet de Google y siempre nos olvidábamos de cargar gastos. Este bot nace desde esa necesidad de poder cargarlo desde el celular, sin entrar a la planilla.
 
-### Instalación
+## Instalación
 
 [Instalar virtual env](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/)
 
 `pip install -r requirements.txt`
 
-
-#### ¿Cómo hago mi propio bot?
+### ¿Cómo hago mi propio bot?
 
 Te va a venir muuy bien leer este artículo de Telegram
 
@@ -22,7 +21,7 @@ Ahi vas a descular:
 - Como dar de alta un bot propio
 - Como hacer la movida para que te aparezcan los comandos disponibles y su descripción
 
-#### ¿Cómo lo linkeo con Google?
+### ¿Cómo lo linkeo con Google?
 
 Dos pasos:
 
@@ -30,7 +29,7 @@ Dos pasos:
 2) Le vas a tener que dar permisos de tu cuenta de Google a esa app que vos creaste. Eso se hace con el comando `/autorizar`
 3) En el `config.py` hay que poner el ID de tu spreadsheet
 
-#### Archivo de configuración
+### Archivo de configuración
 
 No la tengo muy atada en Python por lo que por ahora la config es medio manual. Hice un archivo `config_template.py` que si lo renombras a `config.py` ya la magia está hecha (y claro, también tenés que poner tu data)
 
@@ -41,7 +40,6 @@ No la tengo muy atada en Python por lo que por ahora la config es medio manual. 
 Por cuestiones de privacidad de Telegram, cuando el bot está en grupos y querés responderle, tenés que mencionar el mensaje que él envio antes. Si no, lo ignora, nunca entra en el handler.
 
 Más info acá https://core.telegram.org/bots#privacy-mode
-
 
 ### Quiero tirarte un par de mejoras, ¿qué se puede hacer?
 
