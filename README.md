@@ -40,12 +40,14 @@ No la tengo muy atada en Python por lo que por ahora la config es medio manual. 
 
 Por cuestiones de privacidad de Telegram, cuando el bot está en grupos y querés responderle, tenés que mencionar el mensaje que él envio antes. Si no, lo ignora, nunca entra en el handler.
 
+Más info acá https://core.telegram.org/bots#privacy-mode
+
 
 ### Quiero tirarte un par de mejoras, ¿qué se puede hacer?
 
 Mi intención es hacer tests de unidad, porque medio que lo empecé a los ponchazos, como una prueba estúpida y ahora ya tiene algo de lógica que vale la pena testear. Si, no fui muy TDD, pero estaba ansioso y era muy fácil de probar.
 
-
+- [ ] Agarrar algún issue que está subido
 - [ ] Tests de unidad
 - [ ] Repasar TODOs
 - [X] Una vez que haya algún test, subirlo a un CI  
