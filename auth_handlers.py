@@ -1,13 +1,15 @@
 import logging
-from google_sheeter import GoogleAuth
-from telegram.ext import ConversationHandler
 import telegram_helper
+
+from google_sheeter import GoogleAuth
+from telegram.ext import ConversationHandler, CallbackContext
+from telegram import Update
 
 
 ENTER_CODE = 0
 
 
-def handler_auth(bot, update):
+def handler_auth(update: Update, context: CallbackContext):
     username = telegram_helper.get_username_from_update(update)
     logging.info("User %s starting auth.", username)
     auth = GoogleAuth(username)
@@ -19,7 +21,7 @@ def handler_auth(bot, update):
     return ENTER_CODE
 
 
-def handler_auth_code(bot, update):
+def handler_auth_code(update: Update, context: CallbackContext):
     username = telegram_helper.get_username_from_update(update)
     auth = GoogleAuth(username)
     code = update.message.text

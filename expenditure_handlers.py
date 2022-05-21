@@ -1,10 +1,9 @@
 import logging
-
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import ConversationHandler
-
 import config
 import telegram_helper
+
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import CallbackContext, ConversationHandler
 from config import config
 from google_sheeter import GoogleAuth, GoogleSheeter
 
@@ -21,7 +20,7 @@ def get_enabled_usernames():
     return list(map(get_username_from_tuple, config.ENABLED_USERS))
 
 
-def handler_gasto(bot, update):
+def handler_gasto(update: Update, context: CallbackContext):
     username = telegram_helper.get_username_from_update(update)
     auth = GoogleAuth(username)
     logging.info("User %s starting conversation.", username)
@@ -63,19 +62,16 @@ def get_categories_keyboard():
     return keyboard_opts
 
 
-def handler_category(bot, update):
+def handler_category(update: Update, context: CallbackContext):
     query = update.callback_query
     category = query.data
     username = telegram_helper.get_username_from_update(update)
     CURRENT_EXPENDITURES[username]['category'] = category
-
-    bot.send_message(text="Monto?",
-                     chat_id=query.message.chat_id,
-                     message_id=query.message.message_id)
+    query.message.reply_text(text="Monto?")
     return AMOUNT
 
 
-def handler_amount(bot, update):
+def handler_amount(update: Update, context: CallbackContext):
     amount = update.message.text
     # reemplazamos , por ., para validar el float. Si, no es la mejor manera de trabajar con formatos numéricos, pero...
     amount_to_validate = amount.replace(",", ".")
@@ -88,7 +84,7 @@ def handler_amount(bot, update):
     return DESCRIPTION
 
 
-def handler_description(bot, update):
+def handler_description(update: Update, context: CallbackContext):
     description = update.message.text
     username = telegram_helper.get_username_from_update(update)
 
@@ -100,7 +96,7 @@ def handler_description(bot, update):
     return ConversationHandler.END
 
 
-def cancel(bot, update):
+def cancel(update: Update, context: CallbackContext):
     username = telegram_helper.get_username_from_update(update)
     logging.info("User %s canceled the conversation.", username)
     del CURRENT_EXPENDITURES[username]
