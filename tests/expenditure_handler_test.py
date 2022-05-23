@@ -13,25 +13,25 @@ def test_expenditure_handler_happy_path_numbers():
     # el handler_amount devuelve el próximo paso de la conversación
     # si no hay errores devuelve DESCRIPTION
     # si hay errores devuelve AMOUNT
-    assert handler_amount(None, _get_update_with_string_amount("10")) == DESCRIPTION
-    assert handler_amount(None, _get_update_with_string_amount("10,5")) == DESCRIPTION
-    assert handler_amount(None, _get_update_with_string_amount("0,53")) == DESCRIPTION
-    assert handler_amount(None, _get_update_with_string_amount("-10,53")) == DESCRIPTION
-    assert handler_amount(None, _get_update_with_string_amount("-10,5")) == DESCRIPTION
-    assert handler_amount(None, _get_update_with_string_amount("-10.5")) == DESCRIPTION
-    assert handler_amount(None, _get_update_with_string_amount("10.5")) == DESCRIPTION
-    assert handler_amount(None, _get_update_with_string_amount("0.5")) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("10"), None) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("10,5"), None) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("0,53"), None) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("-10,53"), None) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("-10,5"), None) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("-10.5"), None) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("10.5"), None) == DESCRIPTION
+    assert handler_amount(_get_update_with_string_amount("0.5"), None) == DESCRIPTION
 
 
 def test_expenditure_handler_non_numbers():
     # el handler_amount devuelve el próximo paso de la conversación
     # si no hay errores devuelve DESCRIPTION
     # si hay errores devuelve AMOUNT
-    assert handler_amount(None, _get_update_with_string_amount("aa")) == AMOUNT
-    assert handler_amount(None, _get_update_with_string_amount("10,5,5")) == AMOUNT
-    assert handler_amount(None, _get_update_with_string_amount("0,ddd53")) == AMOUNT
-    assert handler_amount(None, _get_update_with_string_amount("-11..4")) == AMOUNT
-    assert handler_amount(None, _get_update_with_string_amount("-10%1")) == AMOUNT
+    assert handler_amount(_get_update_with_string_amount("aa"), None) == AMOUNT
+    assert handler_amount(_get_update_with_string_amount("10,5,5"), None) == AMOUNT
+    assert handler_amount(_get_update_with_string_amount("0,ddd53"), None) == AMOUNT
+    assert handler_amount(_get_update_with_string_amount("-11..4"), None) == AMOUNT
+    assert handler_amount(_get_update_with_string_amount("-10%1"), None) == AMOUNT
 
 
 def _get_update_with_string_amount(amount):
