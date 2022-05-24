@@ -1,7 +1,0 @@
-language: python
-before_install:
-  - mv config_template.py config.py
-script:
-  - pytest
-env:
-  - BOT_ENV=test
