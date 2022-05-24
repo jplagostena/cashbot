@@ -1,4 +1,4 @@
-# Telegram Cashbot [![build-status](https://github.com/jplagostena/cashbot/actions/workflows/python-package.yml/badge.svg)](https://github.com/jplagostena/cashbot/actions/workflows/python-package.yml)
+# Telegram Cashbot [![cashbot-build-and-test](https://github.com/jplagostena/cashbot/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/jplagostena/cashbot/actions/workflows/build-and-test.yml)
 
 ## ¿Qué hace?
 
