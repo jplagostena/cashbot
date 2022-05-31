@@ -1,7 +1,7 @@
 from __future__ import print_function
-import gspread
+import gspread # type: ignore
 import datetime
-from oauth2client import file, client
+from oauth2client import file, client # type: ignore
 from config import config
 import os
 
